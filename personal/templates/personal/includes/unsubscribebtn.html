@@ -1,0 +1,27 @@
+{% block content %}
+<button class="btn btn-primary" id="unsubscribe-link" style="display: none;">Dejar de recibir</button>
+    <script>
+        function unsubscribe() {
+            OneSignal.push(["setSubscription", false]);
+            window.location.reload();
+        }
+        var OneSignal = OneSignal || [];
+
+        OneSignal.push(function() {
+            // If we're on an unsupported browser, do nothing
+            if (!OneSignal.isPushNotificationsSupported()) {
+                return;
+            }
+            OneSignal.isPushNotificationsEnabled(function(isEnabled) {
+                if (isEnabled) {
+                    document.getElementById("unsubscribe-link").addEventListener('click', unsubscribe);
+                    document.getElementById("unsubscribe-link").style.display = '';
+                } else {
+                    // The user is subscribed to notifications
+                    // Don't show anything
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+      <script>
+        var OneSignal = OneSignal || [];
+        OneSignal.push(["init", {
+          appId: "26c25158-2ca5-4f2b-8fa1-8516ad05dfa5",
+          subdomainName: 'escarapela',
+          notifyButton: {
+              enable: false /* Set to false to hide */
+          },
+          promptOptions: {
+              showCredit: false,
+              actionMessage: 'quiere enviarte notificaciones:',
+              exampleNotificationTitleDesktop: 'Ejemplo de notificacion:',
+              exampleNotificationMessageDesktop: 'Apareceràn en tu escritorio',
+              exampleNotificationTitleMobile: ' Notificacion de ejemplo',
+              exampleNotificationMessageMobile: 'Apareceràn en tu dispositivo',
+              exampleNotificationCaption: '(podès desubscribirte en cualquier momento)',
+              acceptButtonText: 'Continuar'.toUpperCase(),
+              cancelButtonText: 'No gracias!'.toUpperCase()
+          },
+          welcomeNotification: {
+              "title": "Gracias por subscribirte!",
+              "message": "Te vamos a estar recordando en las fechas patrias!",
+          }
+        }]);
+      </script>
+    <title>Pequeña Bandera</title>
+
+    <meta charset="utf-8"/>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+
+    <style type="text/css">
+    html,body{
+      height: 100%;
+    }
+    </style>
+
+</head>
+
+{% include "personal/footer.html" %}
+
+<body class="body" style="background-color:#5EC0E0">
+    <div class="container-fluid" style="min-height:15%;padding-bottom:15px;padding-top:15px">
+    {% include "personal/includes/header.html" %}
+    </div>
+
+    <div class="container-fluid" style="font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;background-color: #F5F5F5;min-height:65%;color:#474747">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div class="container-fluid" style="min-height:15%;padding-top:30px">
+        <div class="row text-center">
+            {% if request.path == '/fechas/' %}
+                {% include "personal/includes/subscribebtn.html" %}
+                {% include "personal/includes/unsubscribebtn.html" %}
+            {% else %}
+                {% include "personal/includes/subscribebtn.html" %}
+                {% include "personal/includes/unsubscribebtn.html" %}
+                {% include "personal/includes/fechasbtn.html" %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+
+
+

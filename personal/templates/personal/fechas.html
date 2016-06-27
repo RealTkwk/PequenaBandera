@@ -1,0 +1,36 @@
+{% extends "personal/template.html" %}
+
+{% block content %}
+
+    <section class="container-fuid">
+        <div class="row text-center" style="padding-top:10px">
+            <p class="proxima" style="font-size: 45px;">Pròxima fecha: {{cercana}}</p>
+        </div>
+    </section>
+
+    <section class="cointainer-fluid" style="padding-top: 10px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <table class="table table-bordered" style="background-color:#FFFFFF;">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Dìa</th>
+                            <th>Motivo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for f in fechas %}
+                        <tr>
+                            <td class="text-center">{{f.0}}</td>
+                            <td><a href="{{f.2}}" style="color: black">{{f.1}}</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
